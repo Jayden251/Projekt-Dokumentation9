@@ -1,0 +1,34 @@
+name: Deploy with API Token
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Schritt 1: Repository auschecken
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Schritt 2: Simuliere API-Anfrage mit API_TOKEN
+      - name: Simulate API Deployment
+        env:
+          API_TOKEN: ${{ secrets.API_TOKEN }}
+        run: |
+          echo "Deploying using API_TOKEN..."
+          # Hier könnte ein curl-Befehl stehen, z.B.:
+          # curl -H "Authorization: Bearer $API_TOKEN" https://api.example.com/deploy
+          echo "Deployment successful (simulated)."
+
+      # Schritt 3: Sende Benachrichtigung an EMAIL_ADDRESS
+      - name: Send Notification
+        env:
+          EMAIL_ADDRESS: ${{ secrets.EMAIL_ADDRESS }}
+        run: |
+          echo "Sending notification to $EMAIL_ADDRESS..."
+          # Hier könnte eine echte Benachrichtigung stehen, z.B. mit einem Tool wie `curl` oder `sendgrid`.
+          echo "Notification sent (simulated)."
